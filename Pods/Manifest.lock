@@ -1,0 +1,30 @@
+PODS:
+  - Realm (3.15.0):
+    - Realm/Headers (= 3.15.0)
+  - Realm/Headers (3.15.0)
+  - RealmSwift (3.15.0):
+    - Realm (= 3.15.0)
+  - ValidationComponents (0.3.0):
+    - ValidationToolkit (~> 0.4.1)
+  - ValidationToolkit (0.4.1)
+
+DEPENDENCIES:
+  - RealmSwift
+  - ValidationComponents
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Realm
+    - RealmSwift
+    - ValidationComponents
+    - ValidationToolkit
+
+SPEC CHECKSUMS:
+  Realm: 9b834e1be6062f544805252c812348872dc5d4ed
+  RealmSwift: 8a41886f8ab6efef9eb8df97de2f2bb911561a79
+  ValidationComponents: fad1f9e9d7fbf3e10c893c880ef9d27627e90382
+  ValidationToolkit: ce8e9c1a5d49eddc3266a009d46df5ea22042dbc
+
+PODFILE CHECKSUM: 53c4c0dcc06e5c18a12a57c42df78574e27f9f82
+
+COCOAPODS: 1.5.3
