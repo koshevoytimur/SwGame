@@ -33,7 +33,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContact
     
     private var userScore: Int = 0 {
         didSet {
-            // ensure UI update runs on main thread
             DispatchQueue.main.async {
                 self.scoreLabel.text = "Score: \(String(self.userScore))"
             }
@@ -79,32 +78,16 @@ class GameViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContact
         sceneView.session.pause()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
     // MARK: - ARSCNViewDelegate
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
         print("Session failed with error: \(error.localizedDescription)")
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
-    
     func runTimer() {
         // ініціалізація таймеру
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
     }
-    
     
     func SaveUserScore() {
         
@@ -194,12 +177,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContact
         let bulletDirection = direction
         bulletsNode.physicsBody?.applyForce(bulletDirection, asImpulse: true)
         
-//        let velocityInLocalSpace = SCNVector3(-0.15, -0.15, -0.15)
-//        let velocityInWorldSpace = bulletsNode.presentation.convertVector(velocityInLocalSpace, to: nil)
-//        bulletsNode.physicsBody?.velocity = velocityInWorldSpace
-        
-        print(bulletsNode.physicsBody?.velocity)
-        
         sceneView.scene.rootNode.addChildNode(bulletsNode)
         
     }
@@ -229,6 +206,7 @@ class GameViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContact
         let posX = Float.random(min: -0.9, max: 0.9)
         let posY = Float.random(min: -0.9, max: 0.9)
         let posZ = Float.random(min: -0.5, max: -1.5)
+        
         enemyNode.position = SCNVector3(posX, posY, posZ)
         addAnimation(node: enemyNode)
         sceneView.scene.rootNode.addChildNode(enemyNode)
@@ -250,35 +228,29 @@ class GameViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContact
         self.playSoundEffect(ofType: .collision)
         
         if explosion {
-            
-            // Play explosion sound for bullet-ship collisions
-            
             self.playSoundEffect(ofType: .explosion)
             
-            let particleSystem = SCNParticleSystem(named: "explosion", inDirectory: nil)
-            let systemNode = SCNNode()
-            systemNode.addParticleSystem(particleSystem!)
-            // place explosion where node is
-            systemNode.position = node.position
-            sceneView.scene.rootNode.addChildNode(systemNode)
+            let particle = SCNParticleSystem(named: "explosion", inDirectory: nil)
+            let explosion = SCNNode()
+            explosion.addParticleSystem(particle!)
+            explosion.position = node.position
+            // додаємо об'єкт на екран
+            sceneView.scene.rootNode.addChildNode(explosion)
         }
         
-        // remove node
+        // видаляемо об'єкт
         node.removeFromParentNode()
     }
     
-    func getUserVector() -> (SCNVector3, SCNVector3) { // (direction, position)
+    func getUserVector() -> (SCNVector3, SCNVector3) {
         if let frame = self.sceneView.session.currentFrame {
-            let mat = SCNMatrix4(frame.camera.transform) // 4x4 transform matrix describing camera in world space
-            let dir = SCNVector3(-2 * mat.m31, -2 * mat.m32, -2 * mat.m33) // orientation of camera in world space
-            let pos = SCNVector3(mat.m41, mat.m42, mat.m43) // location of camera in world space
-            
-            return (dir, pos)
+            let mat = SCNMatrix4(frame.camera.transform)
+            let direction = SCNVector3(-2 * mat.m31, -2 * mat.m32, -2 * mat.m33)
+            let position = SCNVector3(mat.m41, mat.m42, mat.m43)
+            return (direction, position)
         }
         return (SCNVector3(0, 0, -1), SCNVector3(0, 0, -0.2))
     }
-    
-    // MARK: - Contact Delegate
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         
@@ -300,8 +272,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContact
             
         }
     }
-    
-    // MARK: - Sound Effects
     
     func playSoundEffect(ofType effect: SoundEffect) {
         
@@ -342,7 +312,6 @@ class GameViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContact
         let scene = SCNScene()
         scoreLabel.textColor = UIColor.white
         _timerLabel.textColor = UIColor.white
-        // Set the scene to the view
         sceneView.scene = scene
         sceneView.scene.physicsWorld.contactDelegate = self
         
@@ -371,16 +340,16 @@ struct CollisionCategory: OptionSet {
 }
 
 extension utsname {
-    func hasAtLeastA9() -> Bool { // checks if device has at least A9 chip for configuration
+    func hasAtLeastA9() -> Bool {
         var systemInfo = self
         uname(&systemInfo)
         let str = withUnsafePointer(to: &systemInfo.machine.0) { ptr in
             return String(cString: ptr)
         }
         switch str {
-        case "iPhone8,1", "iPhone8,2", "iPhone8,4", "iPhone9,1", "iPhone9,2", "iPhone9,3", "iPhone9,4": // iphone with at least A9 processor
+        case "iPhone8,1", "iPhone8,2", "iPhone8,4", "iPhone9,1", "iPhone9,2", "iPhone9,3", "iPhone9,4":
             return true
-        case "iPad6,7", "iPad6,8", "iPad6,3", "iPad6,4", "iPad6,11", "iPad6,12": // ipad with at least A9 processor
+        case "iPad6,7", "iPad6,8", "iPad6,3", "iPad6,4", "iPad6,11", "iPad6,12":
             return true
         default:
             return false
@@ -388,16 +357,8 @@ extension utsname {
     }
 }
 
-enum SoundEffect: String {
-    case explosion = "explosion"
-    case collision = "collision"
-    case bullet = "torpedo"
-}
-
 public extension Float {
-    
-    /// Returns a random floating point number between 0.0 and 1.0, inclusive.
-    static var random: Float {
+        static var random: Float {
         return Float(arc4random()) / 0xFFFFFFFF
     }
     

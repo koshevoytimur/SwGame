@@ -28,6 +28,7 @@
 		D9E774DD2299EE600045091A /* TopScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E774DC2299EE600045091A /* TopScores.swift */; };
 		D9E774E52299EF1D0045091A /* TopScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E774E42299EF1D0045091A /* TopScoresViewController.swift */; };
 		D9E774E72299F31E0045091A /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E774E62299F31E0045091A /* AlertView.swift */; };
+		D9FCAFFD229DA0E4002DA27A /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FCAFFC229DA0E4002DA27A /* Sounds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		D9E774DC2299EE600045091A /* TopScores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopScores.swift; sourceTree = "<group>"; };
 		D9E774E42299EF1D0045091A /* TopScoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopScoresViewController.swift; sourceTree = "<group>"; };
 		D9E774E62299F31E0045091A /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		D9FCAFFC229DA0E4002DA27A /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				D9E774E62299F31E0045091A /* AlertView.swift */,
+				D9FCAFFC229DA0E4002DA27A /* Sounds.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				D9E774DD2299EE600045091A /* TopScores.swift in Sources */,
 				D9E774DB2299EE4B0045091A /* Users.swift in Sources */,
 				D9E774D72299EE210045091A /* SingInViewController.swift in Sources */,
+				D9FCAFFD229DA0E4002DA27A /* Sounds.swift in Sources */,
 				D9E774E72299F31E0045091A /* AlertView.swift in Sources */,
 				D9E774E52299EF1D0045091A /* TopScoresViewController.swift in Sources */,
 				D9E774D92299EE310045091A /* SingUpViewController.swift in Sources */,

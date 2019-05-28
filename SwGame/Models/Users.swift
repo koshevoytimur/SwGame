@@ -11,15 +11,16 @@ import RealmSwift
 
 class Users: Object {
     
+    @objc dynamic var id: Int64 = 0
     @objc dynamic var userName: String?
     @objc dynamic var email: String?
     @objc dynamic var password: String?
+    @objc dynamic var score = TopScores()
+//    @objc dynamic var userName: String?
+//    @objc dynamic var email: String?
+//    @objc dynamic var password: String?
    
 }
 
-//@objc dynamic var id: Int64 = 0
-//@objc dynamic var userName: String?
-//@objc dynamic var email: String?
-//@objc dynamic var password: String?
-//@objc dynamic var score = TopScores()
+
 

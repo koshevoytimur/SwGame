@@ -56,6 +56,5 @@ class TopScoresViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBAction func backButtonAction(_ sender: Any) {
         
     }
-    
 
 }

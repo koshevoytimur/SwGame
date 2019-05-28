@@ -263,10 +263,4 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    //    // Hide the keyboard when the return key pressed.
-    //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    //        textField.resignFirstResponder()
-    //        return true
-    //    }
-    
 }

@@ -11,15 +11,15 @@ import RealmSwift
 
 class TopScores: Object {
     
+//    @objc dynamic var userName: String?
+//    @objc dynamic var score: String?
+    @objc dynamic var userId: Int64 = 0
     @objc dynamic var userName: String?
     @objc dynamic var score: String?
     
+    override static func primaryKey() -> String? {
+        return "userId"
+    }
+
 }
 
-//@objc dynamic var userId: Int64 = 0
-//@objc dynamic var userName: String?
-//@objc dynamic var score: String?
-//
-//override static func primaryKey() -> String? {
-//    return "userId"
-//}

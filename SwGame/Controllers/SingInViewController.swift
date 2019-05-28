@@ -38,7 +38,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         let def = UserDefaults.standard
         let currentUser = def.string(forKey: "currentUser")
-        print(currentUser)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -17,7 +17,6 @@ class MainMenuViewController: UIViewController {
         super.viewDidLoad()
         
         setUpOutlets()
-        // Do any additional setup after loading the view.
     }
     
     // Save authorize state.
@@ -50,14 +49,5 @@ class MainMenuViewController: UIViewController {
         _topScoresButton.layer.borderWidth = 0.5
         _topScoresButton.layer.borderColor = UIColor.gray.cgColor
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
